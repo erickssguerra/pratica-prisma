@@ -27,9 +27,8 @@ async function getSpecificCar(req: Request, res: Response) {
 
 async function createCar(req: Request, res: Response) {
   const { model, licensePlate, year, color } = req.body;
-
   try {
-    await carService.createCar(model, licensePlate, year, color)
+    await carService.createCar(model, licensePlate, Number(year), color);
     res.sendStatus(httpStatus.CREATED);
   } catch (e) {
     console.log(e);
@@ -61,7 +60,7 @@ const carController = {
   getAllCars,
   getSpecificCar,
   createCar,
-  deleteCar
-}
+  deleteCar,
+};
 
 export default carController;
